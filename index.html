@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¡Se armó la carnita! — Ana Cecilia</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bgDeep: '#241C11',
+            bgCard: '#2B2215',
+            borderGold: '#7A6A47',
+            borderGoldLight: '#9E8A5C',
+            salmon: '#F2A184',
+            salmonMuted: '#E67E66',
+            cream: '#D8D5C5',
+            creamLight: '#E8E3D5',
+            mustard: '#D9A73E',
+            mustardBright: '#E6B84C',
+            sage: '#9BB39E',
+            terracotta: '#7A2510',
+            terracottaHover: '#922E15',
+            waxRed: '#6E1E11',
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Estilos base y scrollbar elegante */
+    html, body {
+      background-color: #1A140C;
+      color: #D8D5C5;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Textura sutil de papel artesanal en el fondo */
+    .paper-texture {
+      background-color: #241C11;
+      background-image: 
+        radial-gradient(rgba(158, 138, 92, 0.05) 1px, transparent 0),
+        radial-gradient(rgba(242, 161, 132, 0.03) 1px, transparent 0);
+      background-size: 28px 28px;
+      background-position: 0 0, 14px 14px;
+    }
+
+    /* Animaciones Keyframes */
+    @keyframes swayBanderin {
+      0%, 100% { transform: rotate(-2.5deg) translateY(0px); }
+      50% { transform: rotate(2.5deg) translateY(1.5px); }
+    }
+
+    @keyframes floatPig {
+      0%, 100% { transform: translateY(0px) rotate(-1deg); }
+      50% { transform: translateY(-7px) rotate(1.5deg); }
+    }
+
+    @keyframes shadowPulse {
+      0%, 100% { transform: scaleX(1); opacity: 0.45; }
+      50% { transform: scaleX(0.84); opacity: 0.25; }
+    }
+
+    @keyframes steamRise1 {
+      0% { transform: translateY(4px) scaleY(0.95); opacity: 0.15; }
+      50% { transform: translateY(-4px) scaleY(1.05); opacity: 0.55; }
+      100% { transform: translateY(-11px) scaleY(0.95); opacity: 0; }
+    }
+
+    @keyframes steamRise2 {
+      0% { transform: translateY(5px) scaleY(0.95); opacity: 0.1; }
+      50% { transform: translateY(-3px) scaleY(1.08); opacity: 0.6; }
+      100% { transform: translateY(-12px) scaleY(0.92); opacity: 0; }
+    }
+
+    @keyframes flowerSwayLeft {
+      0%, 100% { transform: rotate(-2deg); }
+      50% { transform: rotate(3deg); }
+    }
+
+    @keyframes flowerSwayRight {
+      0%, 100% { transform: rotate(2deg); }
+      50% { transform: rotate(-3deg); }
+    }
+
+    @keyframes sparkleTwinkle {
+      0%, 100% { opacity: 0.35; transform: scale(0.85); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 6px 24px rgba(122, 37, 16, 0.45); }
+      50% { box-shadow: 0 8px 32px rgba(242, 161, 132, 0.25); }
+    }
+
+    /* Clases de animación */
+    .banderin-item {
+      transform-box: fill-box;
+      transform-origin: top center;
+      animation: swayBanderin 3.8s ease-in-out infinite;
+    }
+    .banderin-item:nth-child(even) {
+      animation-delay: 0.6s;
+      animation-duration: 4.2s;
+    }
+    .banderin-item:nth-child(3n) {
+      animation-delay: 1.2s;
+    }
+
+    .pig-float {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: floatPig 3.4s ease-in-out infinite;
+    }
+
+    .pig-shadow {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: shadowPulse 3.4s ease-in-out infinite;
+    }
+
+    .steam-1 { animation: steamRise1 3s ease-in-out infinite; }
+    .steam-2 { animation: steamRise2 3.4s ease-in-out infinite 0.8s; }
+    .steam-3 { animation: steamRise1 3.2s ease-in-out infinite 1.5s; }
+
+    .flower-left {
+      transform-box: fill-box;
+      transform-origin: bottom center;
+      animation: flowerSwayLeft 4.5s ease-in-out infinite;
+    }
+
+    .flower-right {
+      transform-box: fill-box;
+      transform-origin: bottom center;
+      animation: flowerSwayRight 4.8s ease-in-out infinite 0.5s;
+    }
+
+    .sparkle {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: sparkleTwinkle 2.4s ease-in-out infinite;
+    }
+    .sparkle-delay {
+      animation-delay: 1.1s;
+    }
+
+    .btn-terracotta-glow {
+      animation: pulseGlow 3s infinite ease-in-out;
+    }
+
+    /* Animaciones de revelado al hacer scroll / entrada */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(22px) scale(0.985);
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal-item.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Interacción del sobre */
+    .envelope-wrapper {
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .envelope-card {
+      transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .envelope-wrapper:hover .envelope-card {
+      transform: translateY(-14px);
+    }
+    .envelope-opening .envelope-card {
+      transform: translateY(-58px) scale(1.03) !important;
+    }
+    .envelope-opening .wax-seal {
+      transform: scale(0.85);
+      opacity: 0.7;
+      transition: all 0.45s ease;
+    }
+
+    /* Transición de pantallas */
+    .screen-fade-out {
+      opacity: 0;
+      transform: scale(1.04);
+      pointer-events: none;
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    /* Modal backdrop */
+    .modal-backdrop {
+      backdrop-filter: blur(6px);
+      background-color: rgba(18, 13, 8, 0.82);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex justify-center items-start selection:bg-salmon selection:text-bgDeep">
+
+  <!-- Botón flotante de música (aparece al abrir la invitación) -->
+  <button
+    id="audioToggleBtn"
+    onclick="toggleMusic()"
+    aria-label="Activar o silenciar música"
+    class="hidden fixed bottom-5 right-5 z-50 flex items-center gap-2 px-3.5 py-2.5 rounded-full bg-bgCard/95 border border-borderGoldLight/70 text-creamLight shadow-xl hover:border-salmon transition-all duration-300 active:scale-95"
+  >
+    <span id="audioWaveIcon" class="flex items-end gap-0.5 h-3.5 w-4 justify-center">
+      <span class="w-0.5 h-2 bg-salmon rounded-full animate-pulse"></span>
+      <span class="w-0.5 h-3.5 bg-mustard rounded-full animate-bounce"></span>
+      <span class="w-0.5 h-2.5 bg-salmon rounded-full animate-pulse"></span>
+    </span>
+    <span id="audioStatusText" class="text-xs font-medium tracking-wide">Sonido: ON</span>
+  </button>
+
+  <!-- CONTENEDOR PRINCIPAL ESTILO TARJETA EDITORIAL -->
+  <main class="relative w-full max-w-[460px] min-h-screen paper-texture shadow-[0_0_60px_rgba(0,0,0,0.85)] overflow-hidden">
+    
+    <!-- MARCO DOBLE DECORATIVO EN TODO EL CONTORNO -->
+    <div class="pointer-events-none fixed sm:absolute inset-0 z-20 p-2.5 sm:p-3.5 flex">
+      <div class="w-full h-full border border-borderGold/65 p-1.5">
+        <div class="w-full h-full border border-borderGold/45"></div>
+      </div>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- PANTALLA 1: PORTADA CON SOBRE INTERACTIVO                 -->
+    <!-- ========================================================= -->
+    <section
+      id="coverScreen"
+      class="relative z-10 min-h-screen flex flex-col justify-between items-center text-center px-6 pt-3 pb-10"
+    >
+      <!-- Guirnalda superior curva de Papel Picado -->
+      <div class="w-full -mx-6 pt-1 select-none">
+        <svg viewBox="0 0 440 88" class="w-full h-auto overflow-visible" aria-hidden="true">
+          <!-- Cuerda curva -->
+          <path d="M -5,14 Q 220,52 445,14" fill="none" stroke="#9E8A5C" stroke-width="1.3" opacity="0.85" />
+          
+          <!-- Banderín 1: Salmón -->
+          <g class="banderin-item" transform="translate(22, 18) rotate(8)">
+            <polygon points="0,0 38,0 38,34 33,30 28,34 23,30 19,34 14,30 9,34 4,30 0,34" fill="#E67E66" />
+            <polygon points="19,8 25,16 19,24 13,16" fill="#241C11" opacity="0.35" />
+            <circle cx="9" cy="16" r="1.5" fill="#F2D1B3" opacity="0.7" />
+            <circle cx="29" cy="16" r="1.5" fill="#F2D1B3" opacity="0.7" />
+          </g>
+
+          <!-- Banderín 2: Mostaza -->
+          <g class="banderin-item" transform="translate(81, 27) rotate(5)">
+            <polygon points="0,0 38,0 38,34 33,30 28,34 23,30 19,34 14,30 9,34 4,30 0,34" fill="#E6B84C" />
+            <polygon points="19,8 25,16 19,24 13,16" fill="#241C11" opacity="0.32" />
+            <circle cx="9" cy="16" r="1.5" fill="#FFF3D1" opacity="0.75" />
+            <circle cx="29" cy="16" r="1.5" fill="#FFF3D1" opacity="0.75" />
+          </g>
+
+          <!-- Banderín 3: Verde Salvia -->
+          <g class="banderin-item" transform="translate(141, 33) rotate(2)">
+            <polygon points="0,0 38,0 38,34 33,30 28,34 23,30 19,34 14,30 9,34 4,30 0,34" fill="#9BB39E" />
+            <polygon points="19,8 25,16 19,24 13,16" fill="#241C11" opacity="0.32" />
+            <circle cx="9" cy="16" r="1.5" fill="#E8E3D5" opacity="0.75" />
+            <circle cx="29" cy="16" r="1.5" fill="#E8E3D5" opacity="0.75" />
+          </g>
+
+          <!-- Banderín 4: Salmón Central -->
+          <g class="banderin-item" transform="translate(201, 35) rotate(0)">
+            <polygon points="0,0 38,0 38,34 33,30 28,34 23,30 19,34 14,30 9,34 4,30 0,34" fill="#E67E66" />
+            <polygon points="19,8 25,16 19,24 13,16" fill="#241C11" opacity="0.35" />
+            <circle cx="9" cy="16" r="1.5" fill="#F2D1B3" opacity="0.7" />
+            <circle cx="29" cy="16" r="1.5" fill="#F2D1B3" opacity="0.7" />
+          </g>
+
+          <!-- Banderín 5: Mostaza -->
+          <g class="banderin-item" transform="translate(261, 33) rotate(-2)">
+            <polygon points="0,0 38,0 38,34 33,30 28,34 23,30 19,34 14,30 9,34 4,30 0,34" fill="#E6B84C" />
+            <polygon points="19,8 25,16 19,24 13,16" fill="#241C11" opacity="0.32" />
+            <circle cx="9" cy="16" r="1.5" fill="#FFF3D1" opacity="0.75" />
+            <circle cx="29" cy="16" r="1.5" fill="#FFF3D1" opacity="0.75" />
+          </g>
+
+          <!-- Banderín 6: Verde Salvia -->
+          <g class="banderin-item" transform="translate(321, 27) rotate(-5)">
+            <polygon points="0,0 38,0 38,34 33,30 28,34 23,30 19,34 14,30 9,34 4,30 0,34" fill="#9BB39E" />
+            <polygon points="19,8 25,16 19,24 13,16" fill="#241C11" opacity="0.32" />
+            <circle cx="9" cy="16" r="1.5" fill="#E8E3D5" opacity="0.75" />
+            <circle cx="29" cy="16" r="1.5" fill="#E8E3D5" opacity="0.75" />
+          </g>
+
+          <!-- Banderín 7: Salmón -->
+          <g class="banderin-item" transform="translate(380, 18) rotate(-8)">
+            <polygon points="0,0 38,0 38,34 33,30 28,34 23,30 19,34 14,30 9,34 4,30 0,34" fill="#E67E66" />
+            <polygon points="19,8 25,16 19,24 13,16" fill="#241C11" opacity="0.35" />
+            <circle cx="9" cy="16" r="1.5" fill="#F2D1B3" opacity="0.7" />
+            <circle cx="29" cy="16" r="1.5" fill="#F2D1B3" opacity="0.7" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Encabezado de Portada -->
+      <div class="mt-2 space-y-3">
+        <p class="text-[10px] sm:text-[11px] font-semibold tracking-[0.26em] text-cream/75 uppercase">
+          ESTA INVITACIÓN ES PARA TI
+        </p>
+        <h1 class="font-serif text-[34px] sm:text-[40px] leading-[1.12] font-bold text-salmon tracking-tight">
+          Hay dos motivos<br />
+          para <span class="italic font-semibold text-creamLight">celebrar.</span>
+        </h1>
+      </div>
+
+      <!-- Ilustración Central del Sobre Interactivo -->
+      <div
+        id="envelopeTrigger"
+        onclick="openInvitation()"
+        role="button"
+        tabindex="0"
+        aria-label="Abrir sobre de invitación"
+        class="envelope-wrapper relative my-4 cursor-pointer select-none w-full max-w-[290px] mx-auto group"
+      >
+        <svg viewBox="0 0 320 235" class="w-full h-auto drop-shadow-[0_18px_28px_rgba(0,0,0,0.65)] overflow-visible">
+          <g transform="rotate(-3.5 160 125)">
+            <!-- Trasera del sobre -->
+            <rect x="30" y="58" width="260" height="152" rx="4" fill="#2D1E0E" stroke="#7A6A47" stroke-width="1.2" />
+            
+            <!-- Solapa interna oscura -->
+            <polygon points="30,58 160,136 290,58" fill="#1F150A" />
+
+            <!-- Tarjeta interior que se desliza hacia arriba -->
+            <g class="envelope-card">
+              <rect x="52" y="24" width="216" height="145" rx="3" fill="#292013" stroke="#8C784E" stroke-width="1.2" />
+              <!-- Ícono Flor Estilizada en la tarjeta -->
+              <g transform="translate(160, 56)" stroke="#C8C4B2" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="-5" cy="-10" r="4.5" />
+                <circle cx="5" cy="-10" r="4.5" />
+                <circle cx="-5" cy="-2" r="4.5" />
+                <circle cx="5" cy="-2" r="4.5" />
+                <circle cx="0" cy="-6" r="2.5" fill="#292013" />
+                <line x1="0" y1="3" x2="0" y2="17" />
+                <path d="M 0,13 Q -9,13 -9,8 Q -3,8 0,13 Z" />
+                <path d="M 0,13 Q 9,13 9,8 Q 3,8 0,13 Z" />
+              </g>
+              <!-- Texto cursivo de la tarjeta -->
+              <text
+                x="160"
+                y="98"
+                text-anchor="middle"
+                fill="#D8D5C5"
+                font-family="'Playfair Display', Georgia, serif"
+                font-style="italic"
+                font-size="16"
+                letter-spacing="0.4"
+              >
+                Con mucho cariño
+              </text>
+            </g>
+
+            <!-- Solapas laterales e inferior del sobre -->
+            <polygon points="30,58 148,136 30,210" fill="#352412" stroke="#6E5E3E" stroke-width="0.9" />
+            <polygon points="290,58 172,136 290,210" fill="#322110" stroke="#6E5E3E" stroke-width="0.9" />
+            <polygon points="30,210 160,122 290,210" fill="#3B2814" stroke="#7A6A47" stroke-width="1.1" />
+
+            <!-- Sello de lacre rojo óxido al centro -->
+            <g class="wax-seal" transform="translate(160, 134)">
+              <circle cx="0" cy="3" r="30" fill="#140B05" opacity="0.55" />
+              <circle cx="0" cy="0" r="29" fill="#5C160C" stroke="#7A2416" stroke-width="1.5" />
+              <circle cx="0" cy="0" r="23" fill="#6E1E11" stroke="#8C2D1C" stroke-width="1.2" />
+              
+              <!-- Flor estilizada grabada en crema dentro del sello -->
+              <g transform="translate(0, 2)" stroke="#E8E3D5" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="-4.5" cy="-9" r="4" />
+                <circle cx="4.5" cy="-9" r="4" />
+                <circle cx="-4.5" cy="-1.5" r="4" />
+                <circle cx="4.5" cy="-1.5" r="4" />
+                <circle cx="0" cy="-5.2" r="2" fill="#6E1E11" />
+                <line x1="0" y1="3" x2="0" y2="15" />
+                <path d="M 0,11.5 Q -8,11.5 -8,7 Q -2.5,7 0,11.5 Z" />
+                <path d="M 0,11.5 Q 8,11.5 8,7 Q 2.5,7 0,11.5 Z" />
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Datos inferiores de portada y botón de apertura -->
+      <div class="w-full space-y-4">
+        <div class="space-y-1.5">
+          <p class="text-[10px] sm:text-[11px] font-semibold tracking-[0.25em] text-cream/75 uppercase">
+            MI CUMPLEAÑOS Y MI SANTO
+          </p>
+          <h2 class="font-serif text-[36px] sm:text-[42px] font-semibold text-salmon leading-tight">
+            Ana Cecilia
+          </h2>
+          <p class="text-xs sm:text-sm text-cream/85 font-normal pt-1">
+            domingo, 22 de noviembre de 2026
+          </p>
+        </div>
+
+        <div class="pt-2 px-3">
+          <button
+            onclick="openInvitation()"
+            class="btn-terracotta-glow w-full max-w-[270px] mx-auto py-3.5 px-6 rounded-xl bg-terracotta hover:bg-terracottaHover text-creamLight font-medium text-sm sm:text-[15px] flex items-center justify-center gap-3 border border-salmon/25 transition-all duration-300 active:scale-95 cursor-pointer"
+          >
+            <!-- Corazón outline -->
+            <svg class="w-4 h-4 text-creamLight/90 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+            </svg>
+            <span>Abrir invitación</span>
+            <!-- Flecha diagonal ↗ -->
+            <svg class="w-4 h-4 text-creamLight/80 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <p class="font-serif italic text-xs sm:text-[13px] text-cream/70 pt-1">
+          Ábrela con sonido y deja que empiece la fiesta.
+        </p>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- PANTALLA 2: INVITACIÓN PRINCIPAL COMPLETA                 -->
+    <!-- ========================================================= -->
+    <section
+      id="mainInvitation"
+      class="hidden relative z-10 flex flex-col items-center text-center px-6 pt-3 pb-16"
+    >
+      <!-- Guirnalda superior curva de Papel Picado -->
+      <div class="w-full -mx-6 pt-1 select-none reveal-item">
+        <svg viewBox="0 0 440 88" class="w-full h-auto overflow-visible" aria-hidden="true">
+          <path d="M -5,14 Q 220,52 445,14" fill="none" stroke="#9E8A5C" stroke-width="1.3" opacity="0.85" />
+          
+          <g class="banderin-item" transform="translate(22, 18) rotate(8)">
+            <polygon points="0,0 38,0 38,34 33,30 28,34 23,30 19,34 14,30 9,34 4,30 0,34" fill="#E67E66" />
+            <polygon points="19,8 25,16 19,24 13,16" fill="#241C11" opacity="0.35" />
+            <circle cx="9" cy="16" r="1.5" fill="#F2D1B3" opacity="0.7" />
+            <circle cx="29" cy="16" r="1.5" fill="#F2D1B3" opacity="0.7" />
+          </g>
+
+          <g class="banderin-item" transform="translate(81, 27) rotate(5)">
+            <polygon points="0,0 38,0 38,34 33,30 28,34 23,30 19,34 14,30 9,34 4,30 0,34" fill="#E6B84C" />
+            <polygon points="19,8 25,16 19,24 13,16" fill="#241C11" opacity="0.32" />
+            <circle cx="9" cy="16" r="1.5" fill="#FFF3D1" opacity="0.75" />
+            <circle cx="29" cy="16" r="1.5" fill="#FFF3D1" opacity="0.75" />
+          </g>
+
+          <g class="banderin-item" transform="translate(141, 33) rotate(2)">
+            <polygon points="0,0 38,0 38,34 33,30 28,34 23,30 19,34 14,30 9,34 4,30 0,34" fill="#9BB39E" />
+            <polygon points="19,8 25,16 19,24 13,16" fill="#241C11" opacity="0.32" />
+            <circle cx="9" cy="16" r="1.5" fill="#E8E3D5" opacity="0.75" />
+            <circle cx="29" cy="16" r="1.5" fill="#E8E3D5" opacity="0.75" />
+          </g>
+
+          <g class="banderin-item" transform="translate(201, 35) rotate(0)">
+            <polygon points="0,0 38,0 38,34 33,30 28,34 23,30 19,34 14,30 9,34 4,30 0,34" fill="#E67E66" />
+            <polygon points="19,8 25,16 19,24 13,16" fill="#241C11" opacity="0.35" />
+            <circle cx="9" cy="16" r="1.5" fill="#F2D1B3" opacity="0.7" />
+            <circle cx="29" cy="16" r="1.5" fill="#F2D1B3" opacity="0.7" />
+          </g>
+
+          <g class="banderin-item" transform="translate(261, 33) rotate(-2)">
+            <polygon points="0,0 38,0 38,34 33,30 28,34 23,30 19,34 14,30 9,34 4,30 0,34" fill="#E6B84C" />
+            <polygon points="19,8 25,16 19,24 13,16" fill="#241C11" opacity="0.32" />
+            <circle cx="9" cy="16" r="1.5" fill="#FFF3D1" opacity="0.75" />
+            <circle cx="29" cy="16" r="1.5" fill="#FFF3D1" opacity="0.75" />
+          </g>
+
+          <g class="banderin-item" transform="translate(321, 27) rotate(-5)">
+            <polygon points="0,0 38,0 38,34 33,30 28,34 23,30 19,34 14,30 9,34 4,30 0,34" fill="#9BB39E" />
+            <polygon points="19,8 25,16 19,24 13,16" fill="#241C11" opacity="0.32" />
+            <circle cx="9" cy="16" r="1.5" fill="#E8E3D5" opacity="0.75" />
+            <circle cx="29" cy="16" r="1.5" fill="#E8E3D5" opacity="0.75" />
+          </g>
+
+          <g class="banderin-item" transform="translate(380, 18) rotate(-8)">
+            <polygon points="0,0 38,0 38,34 33,30 28,34 23,30 19,34 14,30 9,34 4,30 0,34" fill="#E67E66" />
+            <polygon points="19,8 25,16 19,24 13,16" fill="#241C11" opacity="0.35" />
+            <circle cx="9" cy="16" r="1.5" fill="#F2D1B3" opacity="0.7" />
+            <circle cx="29" cy="16" r="1.5" fill="#F2D1B3" opacity="0.7" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Separador superior: "UNA MESA, MUCHAS SONRISAS" -->
+      <div class="reveal-item mt-3 flex items-center justify-center gap-3 w-full">
+        <span class="h-[1px] w-7 bg-borderGoldLight/65"></span>
+        <span class="text-[9.5px] sm:text-[10.5px] font-semibold tracking-[0.24em] text-cream/75 uppercase">
+          UNA MESA, MUCHAS SONRISAS
+        </span>
+        <span class="h-[1px] w-7 bg-borderGoldLight/65"></span>
+      </div>
+
+      <!-- Ícono Flor Estilizada Dorada -->
+      <div class="reveal-item mt-4 mb-2">
+        <svg width="26" height="30" viewBox="0 0 28 32" fill="none" stroke="#D9A73E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9.5" cy="7.5" r="4" />
+          <circle cx="18.5" cy="7.5" r="4" />
+          <circle cx="9.5" cy="15" r="4" />
+          <circle cx="18.5" cy="15" r="4" />
+          <circle cx="14" cy="11.2" r="2" fill="#241C11" />
+          <line x1="14" y1="19" x2="14" y2="30" />
+          <path d="M 14,27 Q 6,27 6,22.5 Q 11.5,22.5 14,27 Z" />
+          <path d="M 14,27 Q 22,27 22,22.5 Q 16.5,22.5 14,27 Z" />
+        </svg>
+      </div>
+
+      <!-- Título Principal: "¡Se armó la carnita!" -->
+      <div class="reveal-item space-y-3 mt-1">
+        <h1 class="font-serif text-[38px] sm:text-[44px] font-bold text-salmon leading-[1.08] tracking-tight">
+          ¡Se armó la<br />carnita!
+        </h1>
+        <p class="text-[10px] sm:text-[11px] font-semibold tracking-[0.23em] text-cream/75 uppercase pt-1">
+          TE INVITO A CELEBRAR MI CUMPLEAÑOS Y MI SANTO
+        </p>
+      </div>
+
+      <!-- Nombre de la Festejada -->
+      <div class="reveal-item mt-3">
+        <h2 class="font-serif text-[40px] sm:text-[46px] font-semibold text-salmon leading-tight">
+          Ana Cecilia
+        </h2>
+      </div>
+
+      <!-- Separador con líneas doradas y flor central -->
+      <div class="reveal-item my-3 flex items-center justify-center gap-4 w-full max-w-[240px]">
+        <span class="h-[1px] flex-1 bg-mustard/55"></span>
+        <svg width="20" height="24" viewBox="0 0 28 32" fill="none" stroke="#D9A73E" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9.5" cy="7.5" r="4" />
+          <circle cx="18.5" cy="7.5" r="4" />
+          <circle cx="9.5" cy="15" r="4" />
+          <circle cx="18.5" cy="15" r="4" />
+          <circle cx="14" cy="11.2" r="2" fill="#241C11" />
+          <line x1="14" y1="19" x2="14" y2="30" />
+          <path d="M 14,27 Q 6,27 6,22.5 Q 11.5,22.5 14,27 Z" />
+          <path d="M 14,27 Q 22,27 22,22.5 Q 16.5,22.5 14,27 Z" />
+        </svg>
+        <span class="h-[1px] flex-1 bg-mustard/55"></span>
+      </div>
+
+      <!-- Párrafo de Invitación -->
+      <p class="reveal-item max-w-[330px] text-[13.5px] sm:text-[14.5px] leading-[1.7] text-cream/85 font-normal mt-1">
+        Hay momentos que saben mejor cuando los compartimos. Acompáñame a celebrar mi cumpleaños y mi santo con unas ricas carnitas y la mejor compañía: la tuya.
+      </p>
+
+      <!-- ========================================================= -->
+      <!-- ILUSTRACIÓN CENTRAL SVG DETALLADA Y ANIMADA               -->
+      <!-- ========================================================= -->
+      <div class="reveal-item w-full max-w-[350px] my-3 select-none">
+        <svg viewBox="0 0 360 275" class="w-full h-auto overflow-visible" role="img" aria-label="Ilustración festiva de cerdito y cazuela de carnitas">
+          
+          <ellipse class="pig-shadow" cx="180" cy="107" rx="34" ry="5" fill="#140F08" />
+
+          <!-- CERDITO FLOTANTE -->
+          <g class="pig-float">
+            <g class="sparkle" transform="translate(222, 34)">
+              <path d="M0,-6 L1.6,-1.6 L6,0 L1.6,1.6 L0,6 L-1.6,1.6 L-6,0 L-1.6,-1.6 Z" fill="#D9A73E" />
+            </g>
+            <g class="sparkle sparkle-delay" transform="translate(237, 48) scale(0.75)">
+              <path d="M0,-6 L1.6,-1.6 L6,0 L1.6,1.6 L0,6 L-1.6,1.6 L-6,0 L-1.6,-1.6 Z" fill="#E6B84C" />
+            </g>
+
+            <path
+              d="M 216,66 C 225,65 227,56 221,55 C 216,54 216,62 223,62 C 228,62 231,58 231,54"
+              fill="none"
+              stroke="#E8A090"
+              stroke-width="2.5"
+              stroke-linecap="round"
+            />
+
+            <rect x="193" y="83" width="7" height="15" rx="3.5" fill="#D88B7B" />
+            <rect x="202" y="84" width="7" height="15" rx="3.5" fill="#E8A090" />
+            <ellipse cx="184" cy="70" rx="34" ry="23" fill="#E8A090" />
+            <rect x="157" y="84" width="7" height="15" rx="3.5" fill="#D88B7B" />
+            <rect x="166" y="85" width="7" height="15" rx="3.5" fill="#E8A090" />
+
+            <path d="M 164,77 Q 174,85 184,78 L 180,88 Q 172,91 165,86 Z" fill="#9BB39E" />
+            <ellipse cx="177" cy="84" rx="4.5" ry="3" transform="rotate(-15 177 84)" fill="#86A189" />
+
+            <circle cx="158" cy="64" r="21" fill="#E8A090" />
+            <path d="M 142,49 L 138,35 L 152,44 Z" fill="#E8A090" stroke="#E8A090" stroke-width="2" stroke-linejoin="round" />
+            <path d="M 143,47 L 141,38 L 149,44 Z" fill="#D48474" />
+            <path d="M 165,45 L 172,33 L 176,47 Z" fill="#E8A090" stroke="#E8A090" stroke-width="2" stroke-linejoin="round" />
+            <path d="M 167,45 L 171,37 L 174,46 Z" fill="#D48474" />
+
+            <path d="M 144,58 Q 147,54 150,58" fill="none" stroke="#8C4A3E" stroke-width="2" stroke-linecap="round" />
+            <path d="M 160,58 Q 163,54 166,58" fill="none" stroke="#8C4A3E" stroke-width="2" stroke-linecap="round" />
+
+            <ellipse cx="143" cy="65" rx="3.5" ry="2" fill="#D97B6C" opacity="0.6" />
+            <ellipse cx="169" cy="65" rx="3.5" ry="2" fill="#D97B6C" opacity="0.6" />
+
+            <ellipse cx="154" cy="67" rx="9.5" ry="7" fill="#F2B4A6" />
+            <circle cx="151" cy="67" r="1.6" fill="#9E5649" />
+            <circle cx="157" cy="67" r="1.6" fill="#9E5649" />
+            <path d="M 151,76 Q 155,79 159,76" fill="none" stroke="#9E5649" stroke-width="1.6" stroke-linecap="round" />
+          </g>
+
+          <!-- VAPOR -->
+          <g fill="none" stroke="#8F7D5B" stroke-width="2" stroke-linecap="round">
+            <path class="steam-1" d="M 158,154 Q 152,142 158,132 Q 164,122 158,114" />
+            <path class="steam-2" d="M 180,152 Q 186,140 180,130 Q 174,120 180,111" />
+            <path class="steam-3" d="M 202,154 Q 196,142 202,132 Q 208,122 202,114" />
+          </g>
+
+          <ellipse cx="180" cy="242" rx="135" ry="12" fill="#171109" opacity="0.7" />
+
+          <!-- FLORES IZQUIERDA -->
+          <g class="flower-left">
+            <path d="M 76,236 Q 68,205 74,174" fill="none" stroke="#859E88" stroke-width="2.2" stroke-linecap="round" />
+            <path d="M 73,236 Q 58,218 56,198" fill="none" stroke="#859E88" stroke-width="2" stroke-linecap="round" />
+            <path d="M 71,212 Q 82,206 86,213 Q 78,218 71,212 Z" fill="#859E88" />
+            <path d="M 65,222 Q 52,218 50,225 Q 58,229 65,222 Z" fill="#859E88" />
+            <g transform="translate(74, 172)">
+              <circle cx="0" cy="-7" r="3.8" fill="#D9A73E" /><circle cx="6.5" cy="-2.5" r="3.8" fill="#D9A73E" /><circle cx="4.2" cy="5.5" r="3.8" fill="#D9A73E" /><circle cx="-4.2" cy="5.5" r="3.8" fill="#D9A73E" /><circle cx="-6.5" cy="-2.5" r="3.8" fill="#D9A73E" /><circle cx="0" cy="0" r="3.2" fill="#7A4B18" />
+            </g>
+            <g transform="translate(56, 196) scale(0.88)">
+              <circle cx="0" cy="-7" r="3.8" fill="#E6B84C" /><circle cx="6.5" cy="-2.5" r="3.8" fill="#E6B84C" /><circle cx="4.2" cy="5.5" r="3.8" fill="#E6B84C" /><circle cx="-4.2" cy="5.5" r="3.8" fill="#E6B84C" /><circle cx="-6.5" cy="-2.5" r="3.8" fill="#E6B84C" /><circle cx="0" cy="0" r="3.2" fill="#7A4B18" />
+            </g>
+          </g>
+
+          <!-- FLORES DERECHA -->
+          <g class="flower-right">
+            <path d="M 278,236 Q 288,204 282,172" fill="none" stroke="#859E88" stroke-width="2.2" stroke-linecap="round" />
+            <path d="M 283,210 Q 270,204 267,211 Q 275,216 283,210 Z" fill="#859E88" />
+            <path d="M 281,220 Q 294,214 297,221 Q 289,226 281,220 Z" fill="#859E88" />
+            <g transform="translate(282, 170)">
+              <circle cx="0" cy="-7" r="4" fill="#D9A73E" /><circle cx="6.8" cy="-2.5" r="4" fill="#D9A73E" /><circle cx="4.4" cy="5.8" r="4" fill="#D9A73E" /><circle cx="-4.4" cy="5.8" r="4" fill="#D9A73E" /><circle cx="-6.8" cy="-2.5" r="4" fill="#D9A73E" /><circle cx="0" cy="0" r="3.4" fill="#7A4B18" />
+            </g>
+          </g>
+
+          <!-- CAZUELA DE CARNITAS -->
+          <g>
+            <path d="M 116,193 C 96,190 96,214 118,214" fill="none" stroke="#D98A6C" stroke-width="6.5" stroke-linecap="round" />
+            <path d="M 244,193 C 264,190 264,214 242,214" fill="none" stroke="#D98A6C" stroke-width="6.5" stroke-linecap="round" />
+            <path d="M 113,184 Q 112,240 162,242 L 198,242 Q 248,240 247,184 Z" fill="#6E190E" />
+            <path d="M 124,205 Q 126,227 146,233" fill="none" stroke="#9C3828" stroke-width="2.5" stroke-linecap="round" opacity="0.65" />
+            <ellipse cx="180" cy="184" rx="68" ry="18" fill="#8F2819" />
+            <ellipse cx="180" cy="184" rx="60" ry="14" fill="#47170A" />
+
+            <path d="M 132,183 Q 142,171 154,179 Q 150,189 135,188 Z" fill="#D98E6C" />
+            <path d="M 150,178 Q 162,167 173,177 Q 168,187 153,185 Z" fill="#E39B78" />
+            <path d="M 169,176 Q 182,165 193,177 Q 187,187 172,185 Z" fill="#CE805E" />
+            <path d="M 189,178 Q 202,168 214,179 Q 208,188 192,186 Z" fill="#E39B78" />
+            <path d="M 208,182 Q 220,173 229,183 Q 222,190 209,188 Z" fill="#D48664" />
+            <path d="M 142,187 Q 155,179 167,187 Q 161,194 145,193 Z" fill="#E6A180" />
+            <path d="M 165,188 Q 180,180 194,188 Q 187,195 168,194 Z" fill="#D98B68" />
+            <path d="M 191,187 Q 205,179 218,187 Q 211,194 194,193 Z" fill="#E6A180" />
+            <path d="M 176,178 Q 170,169 178,167 Q 182,173 176,178 Z" fill="#8CA88E" />
+            <path d="M 181,179 Q 188,170 193,174 Q 187,180 181,179 Z" fill="#9BB39E" />
+          </g>
+
+          <!-- TORTILLA Y LIMÓN -->
+          <g transform="translate(94, 232) rotate(-8)">
+            <ellipse cx="0" cy="4" rx="28" ry="11" fill="#B5935A" />
+            <ellipse cx="0" cy="0" rx="28" ry="11" fill="#D6B57C" />
+          </g>
+          <g transform="translate(248, 233) rotate(12)">
+            <path d="M -18,-4 A 19,17 0 0,0 18,-4 Z" fill="#638754" />
+            <path d="M -15,-4 A 16,14 0 0,0 15,-4 Z" fill="#E6E8D5" />
+            <path d="M -13,-3.5 A 13.5,11.5 0 0,0 13,-3.5 Z" fill="#94B876" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- FECHA Y HORA -->
+      <div class="reveal-item w-full mt-2">
+        <div class="grid grid-cols-3 items-center py-2">
+          <div class="text-center px-1">
+            <span class="text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] text-cream/80 uppercase">DOMINGO</span>
+          </div>
+          <div class="border-x border-borderGoldLight/55 py-1 px-2">
+            <span class="font-serif text-[38px] sm:text-[44px] font-bold text-creamLight leading-none">22</span>
+          </div>
+          <div class="text-center px-1 leading-snug">
+            <span class="block text-[9.5px] sm:text-[10.5px] font-semibold tracking-[0.18em] text-cream/80 uppercase">NOVIEMBRE DE</span>
+            <span class="block text-[10px] sm:text-[11px] font-semibold tracking-[0.2em] text-cream/80 mt-0.5">2026</span>
+          </div>
+        </div>
+        <div class="flex items-center justify-center gap-2 mt-3 text-cream/85">
+          <svg class="w-4 h-4 text-cream/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span class="text-xs sm:text-sm font-medium tracking-wide">1:00 p.m.</span>
+        </div>
+      </div>
+
+      <!-- UBICACIÓN -->
+      <div class="reveal-item w-full mt-7 flex flex-col items-center">
+        <div class="mb-2 text-cream/80">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle>
+          </svg>
+        </div>
+        <h3 class="text-base sm:text-lg font-semibold text-creamLight tracking-wide">Ejido Alianza</h3>
+        <p class="text-xs sm:text-sm text-cream/70 mt-1">Cerrada de los Cortaza</p>
+        <p class="font-serif italic text-[17px] sm:text-[19px] text-salmon mt-5">Ven con hambre y ganas de celebrar.</p>
+        <button
+          onclick="openLocationModal()"
+          class="mt-5 px-6 py-2.5 rounded-lg border border-borderGoldLight/65 hover:border-salmon bg-bgCard/50 hover:bg-bgCard text-creamLight text-xs sm:text-[13px] font-medium flex items-center gap-2.5 transition-all duration-300 active:scale-95 cursor-pointer"
+        >
+          <span>Ver ubicación</span>
+          <span class="text-cream/75">↗</span>
+        </button>
+      </div>
+
+      <!-- CUENTA REGRESIVA -->
+      <div class="reveal-item w-full mt-8 pt-6 border-t border-borderGold/45">
+        <p class="text-[9.5px] sm:text-[10.5px] font-semibold tracking-[0.24em] text-cream/70 uppercase">LA CUENTA REGRESIVA YA EMPEZÓ</p>
+        <p id="countdownDisplay" class="font-serif text-[22px] sm:text-[26px] font-bold text-creamLight mt-2.5 tracking-tight">Calculando tiempo...</p>
+      </div>
+
+      <!-- RSVP Box linked to Google Forms -->
+      <div class="rsvp-box reveal-item w-full mt-8 pt-6 border-t border-borderGold/45">
+        <div class="bg-bgCard/60 border border-borderGold/50 rounded-xl p-5 shadow-lg max-w-[340px] mx-auto">
+          <h3 class="serif rsvp-title font-serif text-xl sm:text-2xl font-bold text-salmon mb-2">Confirma tu asistencia</h3>
+          <p class="rsvp-desc text-xs sm:text-[13px] text-cream/80 mb-4 leading-relaxed">Ayúdame a calcular las tortillas y el limoncito confirmando tu lugar.</p>
+          <a href="https://forms.gle/T6SAwmWmvMPFBagf9" target="_blank" rel="noopener" class="btn-rsvp block w-full py-3 px-4 rounded-xl bg-terracotta hover:bg-terracottaHover text-creamLight text-xs sm:text-sm font-medium border border-salmon/25 transition text-center shadow-md" style="text-decoration: none; display: block; text-align: center;">
+            Llenar formulario de confirmación
+          </a>
+        </div>
+      </div>
+
+      <div class="reveal-item mt-9 flex items-center justify-center gap-3 opacity-75">
+        <span class="h-[1px] w-10 bg-borderGold"></span>
+        <span class="font-serif italic text-xs text-cream/80">Ana Cecilia · 2026</span>
+        <span class="h-[1px] w-10 bg-borderGold"></span>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL UBICACIÓN -->
+  <div id="locationModal" onclick="closeModalOnBackdrop(event, 'locationModal')" class="hidden fixed inset-0 z-50 modal-backdrop flex items-center justify-center p-4">
+    <div class="relative w-full max-w-[380px] rounded-2xl bg-bgDeep border border-borderGoldLight/70 p-6 text-center shadow-2xl space-y-4">
+      <button onclick="closeModal('locationModal')" class="absolute top-3.5 right-3.5 w-8 h-8 rounded-full border border-borderGold/50 text-cream/80 hover:text-salmon flex items-center justify-center text-sm cursor-pointer">✕</button>
+      <div>
+        <p class="text-[10px] font-semibold tracking-[0.22em] text-cream/65 uppercase">PUNTO DE REUNIÓN</p>
+        <h4 class="font-serif text-2xl font-bold text-salmon mt-1">Ejido Alianza</h4>
+        <p class="text-sm text-cream/85 mt-1">Cerrada de los Cortaza</p>
+      </div>
+      <a href="https://www.google.com/maps/search/?api=1&query=Ejido+Alianza+Cerrada+de+los+Cortaza" target="_blank" rel="noopener noreferrer" class="w-full py-3 px-4 rounded-xl bg-terracotta hover:bg-terracottaHover text-creamLight text-sm font-medium flex items-center justify-center gap-2 border border-salmon/25 transition" style="text-decoration: none;">
+        <span>Abrir en Google Maps ↗</span>
+      </a>
+      <button onclick="copyAddress()" id="copyAddressBtn" class="w-full py-2.5 px-4 rounded-xl border border-borderGoldLight/60 hover:border-salmon text-cream/90 text-xs font-medium transition cursor-pointer">Copiar dirección</button>
+    </div>
+  </div>
+
+  <script>
+    let audioCtx = null;
+    let isPlaying = false;
+    let melodyTimer = null;
+    // Melodía instrumental de "Cumpleaños feliz" (arreglo sencillo en Do mayor).
+    const melodySequence = [
+      { freq: 392.00, dur: 0.34 }, { freq: 392.00, dur: 0.34 },
+      { freq: 440.00, dur: 0.68 }, { freq: 392.00, dur: 0.68 },
+      { freq: 523.25, dur: 0.68 }, { freq: 493.88, dur: 1.00 }, { freq: 0, dur: 0.22 },
+      { freq: 392.00, dur: 0.34 }, { freq: 392.00, dur: 0.34 },
+      { freq: 440.00, dur: 0.68 }, { freq: 392.00, dur: 0.68 },
+      { freq: 587.33, dur: 0.68 }, { freq: 523.25, dur: 1.00 }, { freq: 0, dur: 0.22 },
+      { freq: 392.00, dur: 0.34 }, { freq: 392.00, dur: 0.34 },
+      { freq: 783.99, dur: 0.68 }, { freq: 659.25, dur: 0.68 },
+      { freq: 523.25, dur: 0.68 }, { freq: 493.88, dur: 0.68 }, { freq: 440.00, dur: 1.00 }, { freq: 0, dur: 0.22 },
+      { freq: 698.46, dur: 0.34 }, { freq: 698.46, dur: 0.34 },
+      { freq: 659.25, dur: 0.68 }, { freq: 523.25, dur: 0.68 },
+      { freq: 587.33, dur: 0.68 }, { freq: 523.25, dur: 1.15 }, { freq: 0, dur: 0.65 }
+    ];
+
+    function playPluckedNote(freq, duration) {
+      if (!audioCtx || !isPlaying || freq <= 0) return;
+      const now = audioCtx.currentTime;
+      const osc1 = audioCtx.createOscillator();
+      const osc2 = audioCtx.createOscillator();
+      const gainNode = audioCtx.createGain();
+      const filter = audioCtx.createBiquadFilter();
+
+      osc1.type = 'triangle';
+      osc2.type = 'sine';
+      osc1.frequency.setValueAtTime(freq, now);
+      osc2.frequency.setValueAtTime(freq * 0.5, now);
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(1650, now);
+
+      gainNode.gain.setValueAtTime(0.001, now);
+      gainNode.gain.linearRampToValueAtTime(0.09, now + 0.03);
+      gainNode.gain.exponentialRampToValueAtTime(0.0008, now + duration + 0.18);
+
+      osc1.connect(filter); osc2.connect(filter); filter.connect(gainNode); gainNode.connect(audioCtx.destination);
+      osc1.start(now); osc2.start(now);
+      osc1.stop(now + duration + 0.2); osc2.stop(now + duration + 0.2);
+    }
+
+    function startFestiveMusic() {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        if (isPlaying) return;
+        isPlaying = true;
+        updateAudioButtonUI();
+        let step = 0;
+        function scheduleNext() {
+          if (!isPlaying) return;
+          const note = melodySequence[step % melodySequence.length];
+          playPluckedNote(note.freq, note.dur);
+          step++;
+          melodyTimer = setTimeout(scheduleNext, note.dur * 1000);
+        }
+        scheduleNext();
+      } catch (err) { console.warn(err); }
+    }
+
+    function stopFestiveMusic() {
+      isPlaying = false;
+      if (melodyTimer) { clearTimeout(melodyTimer); melodyTimer = null; }
+      updateAudioButtonUI();
+    }
+
+    function toggleMusic() { isPlaying ? stopFestiveMusic() : startFestiveMusic(); }
+
+    function updateAudioButtonUI() {
+      const statusText = document.getElementById('audioStatusText');
+      const waveIcon = document.getElementById('audioWaveIcon');
+      if (!statusText || !waveIcon) return;
+      statusText.textContent = isPlaying ? 'Sonido: ON' : 'Sonido: OFF';
+      if (isPlaying) waveIcon.classList.remove('opacity-40'); else waveIcon.classList.add('opacity-40');
+    }
+
+    let invitationOpened = false;
+    function openInvitation() {
+      if (invitationOpened) return;
+      invitationOpened = true;
+      const coverScreen = document.getElementById('coverScreen');
+      const mainInvitation = document.getElementById('mainInvitation');
+      const envelopeTrigger = document.getElementById('envelopeTrigger');
+      const audioBtn = document.getElementById('audioToggleBtn');
+
+      envelopeTrigger.classList.add('envelope-opening');
+      startFestiveMusic();
+
+      setTimeout(() => { coverScreen.classList.add('screen-fade-out'); }, 380);
+      setTimeout(() => {
+        coverScreen.classList.add('hidden');
+        mainInvitation.classList.remove('hidden');
+        audioBtn.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        initRevealObserver();
+      }, 1050);
+    }
+
+    function initRevealObserver() {
+      const items = document.querySelectorAll('#mainInvitation .reveal-item');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -20px 0px' });
+      items.forEach((el, idx) => {
+        if (idx < 5) el.style.transitionDelay = `${idx * 110}ms`;
+        observer.observe(el);
+      });
+    }
+
+    const eventTargetDate = new Date(2026, 10, 22, 13, 0, 0).getTime();
+    function updateCountdown() {
+      const display = document.getElementById('countdownDisplay');
+      if (!display) return;
+      const diff = eventTargetDate - Date.now();
+      if (diff <= 0) { display.textContent = '¡Hoy se armó la carnita!'; return; }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      display.textContent = `${days} días · ${hours} horas · ${minutes} minutos`;
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 15000);
+
+    function openLocationModal() { document.getElementById('locationModal').classList.remove('hidden'); }
+    function closeModal(modalId) { document.getElementById(modalId).classList.add('hidden'); }
+    function closeModalOnBackdrop(event, modalId) { if (event.target.id === modalId) closeModal(modalId); }
+
+    function copyAddress() {
+      const tempInput = document.createElement('input');
+      tempInput.value = 'Ejido Alianza, Cerrada de los Cortaza';
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+      const btn = document.getElementById('copyAddressBtn');
+      btn.textContent = '✓ ¡Dirección copiada!';
+      setTimeout(() => { btn.textContent = 'Copiar dirección'; }, 2500);
+    }
+  </script>
+</body>
+</html>
